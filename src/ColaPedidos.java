@@ -9,16 +9,35 @@ public class ColaPedidos{
         this.capacidad = capacidad;
     }
 
-    public void nuevoPedido (String pedido) {
-        //TODO Si la cola está llena, el cliente debe esperar ( wait() ).
+    public synchronized void nuevoPedido (String pedido) throws InterruptedException {
+        //TODO Mientras la cola este llena, no se produce
+        while (pedidos.size() == capacidad) {
+            //TODO Espera
+            wait();
+        }
+        //TODO Añadir a la cola el valor
+        pedidos.add(pedido); // queda un hueco libre en la cola
+        System.out.println("Producido valor: " + pedido);
 
-        //TODO Si hay espacio, se añade el pedido a la cola.
-
-        //TODO Al añadir un pedido, avisar a los trabajadores ( notifyAll() ).
-
+        //TODO Avisamos a los consumidores una vez que ha quedado un hueco libre
+        notifyAll();
     }
 
-    public void procesarPedido() {
+    public synchronized String procesarPedido() throws InterruptedException {
+        //TODO Mientras la cola esta vacia no se consume //
+        while (pedidos.isEmpty()) {
+            //TODO Esperar
+            wait();
+            // Si la cola está vacía no hay nada que consumir
+        }
+        // Si la cola esta llena
+        //TODO recuperar el valor de la cabeza de la cola poll()
+        String valor = pedidos.poll();
+        System.out.println("Consumido valor: " + valor);
 
+        //TODO Avisamos a los productores
+        notifyAll();
+
+        return valor;
     }
 }

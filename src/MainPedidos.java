@@ -5,15 +5,15 @@ public class MainPedidos {
         ColaPedidos colaPedidos = new ColaPedidos(CAPACIDAD_MAX);
 
         // Crear productores
-        Productor[] productores = new Productor[2];
+        Productor[] productores = new Productor[10];
         for (int i = 0; i < productores.length; i++) {
             productores[i] = new Productor(colaPedidos);
             productores[i].setName("Productor" + i);
         }
         // Crear consumidores
-        Consumidor[] consumidores = new Consumidor[2];
+        Consumidor[] consumidores = new Consumidor[10];
         for (int i = 0; i < consumidores.length; i++) {
-            consumidores[i] = new Consumidor();
+            consumidores[i] = new Consumidor(colaPedidos);
             consumidores[i].setName("Consumidor" + i);
         }
 
