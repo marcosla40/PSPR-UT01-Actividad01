@@ -11,7 +11,9 @@ public class ColaPedidos{
 
     public void nuevoPedido (String pedido) {
         //TODO Si la cola está llena, el cliente debe esperar ( wait() ).
-
+        while (true){
+            System.out.println("a");
+        }
         //TODO Si hay espacio, se añade el pedido a la cola.
 
         //TODO Al añadir un pedido, avisar a los trabajadores ( notifyAll() ).
