@@ -1,6 +1,6 @@
 import java.util.LinkedList;
 
-public class ColaPedidos extends Thread {
+public class ColaPedidos{
 
     private final LinkedList<String> pedidos = new LinkedList<>();
     private final int capacidad;

@@ -2,12 +2,12 @@ public class MainPedidos {
     final static int CAPACIDAD_MAX = 5;
 
     public static void main(String[] args) {
-        ColaPedidos buffer = new ColaPedidos(CAPACIDAD_MAX);
+        ColaPedidos colaPedidos = new ColaPedidos(CAPACIDAD_MAX);
 
         // Crear productores
         Productor[] productores = new Productor[2];
         for (int i = 0; i < productores.length; i++) {
-            productores[i] = new Productor();
+            productores[i] = new Productor(colaPedidos);
             productores[i].setName("Productor" + i);
         }
         // Crear consumidores
@@ -39,5 +39,5 @@ public class MainPedidos {
 
         System.out.println("Ha terminado");
     }
-    }
 }
+
